@@ -13,11 +13,13 @@ module.exports = function(grunt){
           './node_modules/ace-builds/src-min-noconflict/ace.js',
           './node_modules/ace-builds/src-min-noconflict/mode-javascript.js',
           './node_modules/ace-builds/src-min-noconflict/mode-json.js',
+          './node_modules/ace-builds/src-min-noconflict/mode-php.js',
           './node_modules/ace-builds/src-min-noconflict/mode-sql.js',
           './node_modules/ace-builds/src-min-noconflict/mode-xml.js',
           './node_modules/ace-builds/src-min-noconflict/mode-yaml.js',
           './node_modules/ace-builds/src-min-noconflict/worker-javascript.js',
           './node_modules/ace-builds/src-min-noconflict/worker-json.js',
+          './node_modules/ace-builds/src-min-noconflict/worker-php.js',i
           './dist/fusio-bundle.min.js',
           './dist/fusio-templates.js'
         ],
