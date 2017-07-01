@@ -1,4 +1,18 @@
 
+### 0.9.1 (2017-06-28)
+
+* Rename default namespace
+* Update docs
+* Add action engine parameter to export
+
+### 0.9.0 (2017-06-11)
+
+* Improved deploy service
+* Changed default todo sample API to php file engine
+* Option to set config values in the deploy file
+* Add action resolver which determines the engine which is used i.e. php or v8
+* Move routes config handling to a separate service
+
 ### 0.8.0 (2017-05-25)
 
 * Update api documentation app
