@@ -1,4 +1,64 @@
 
+### 0.9.9
+
+* Update OAuth2 token endpoint handle OPTIONS request
+* Add query parameters to backend schema
+* Backend endpoints handle count parameter #67
+* Relaxed password requirements and make min pw length configurable #68
+* Allow email as user name login #66
+
+### 0.9.8 (2017-10-11)
+
+* Add config.yaml to deploy
+* Add system restore command
+* Improve HEAD and OPTIONS method handling 
+* Cronjob handle errors
+
+### 0.9.7 (2017-10-05)
+
+* Add cronjob service
+* Add a schema to every backend endpoint
+* Fix route path regexp validation #63
+* Update API doc
+
+### 0.9.6 (2017-09-25)
+
+* Improved documentation add backend api reference and action examples
+* Add PATCH method support
+* Update dependencies and prepare release
+
+### 0.9.5 (2017-09-09)
+
+* Add scopes per route #55
+* Add OAuth2 refresh token endpoint #16
+* Added static file processor
+* Case insensitive env vars replacement
+
+### 0.9.4 (2017-08-26)
+
+* Added automatic engine detection
+* Improved backend app
+* Log execution time of an action and add new statistics
+* Added openapi generation and import support
+* Handle schema for query parameters
+* Improved route serialization #44
+* Handle multiple responses for different status codes
+* Split up deploy file into separate files
+* Removed routes action and schema relation handling
+* Removed old upgrade paths
+* Execute migration on an empty database schema
+
+### 0.9.3 (2017-07-20)
+
+* Deploy command handle verbose mode
+* Add general update code which inserts new routes on update
+* Add statistic request count method
+
+### 0.9.2 (2017-07-09)
+
+* Add audit panel which contains a log from every action on the system
+* Added event handler
+
 ### 0.9.1 (2017-06-28)
 
 * Rename default namespace

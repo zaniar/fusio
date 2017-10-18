@@ -2,23 +2,21 @@
 Installation
 ============
 
-It is possible to install Fusio either through composer or install it manually.
-Place the project into the www directory of the web server.
+It is possible to install Fusio either through composer or manually file 
+download. Place the project into the www directory of the web server.
 
-Composer
-^^^^^^^^
+**Composer**
 
 .. code-block:: text
 
     composer create-project fusio/fusio
 
-Download
-^^^^^^^^
+**Download**
 
 https://github.com/apioo/fusio/releases
 
 Configuration
-^^^^^^^^^^^^^
+-------------
 
 * **Adjust the configuration file**
 
@@ -41,7 +39,7 @@ should see a API response that the installation was successful. The backend is
 available at ``/fusio/``.
 
 Docker
-^^^^^^
+------
 
 Alternatively it is also possible to setup a Fusio system through docker. This
 has the advantage that you automatically get a complete running Fusio system
@@ -56,10 +54,10 @@ command:
 This builds the Fusio system with a predefined backend account. The credentials 
 are taken from the env variables ``FUSIO_BACKEND_USER``, ``FUSIO_BACKEND_EMAIL`` 
 and ``FUSIO_BACKEND_PW`` in the `docker-compose.yml`_. If you are planing to run 
-the container on the internet you must change these credentials.
+the container on the internet you MUST change these credentials.
 
-Configure web server
---------------------
+Web server
+----------
 
 It is recommended to setup a virtual host in your ``sites-available`` folder 
 which points to the public folder of Fusio. After this you also have to change 
@@ -82,10 +80,11 @@ Apache
     </VirtualHost>
 
 You should enable the module ``mod_rewrite`` so that the .htaccess file in the 
-public folder is used. The htaccess contains an important rule which redirects 
-the ``Authorization`` header to Fusio which is otherwise removed. If the 
-.htaccess file does not work please check whether the ``AllowOverride`` 
-directive is set correctly i.e. to ``All``.
+public folder is used. It is also possible to include the htaccess commands 
+directly into the virtual host which also increases performance. The htaccess 
+contains an important rule which redirects the ``Authorization`` header to Fusio 
+which is otherwise removed. If the .htaccess file does not work please check 
+whether the ``AllowOverride`` directive is set correctly i.e. to ``All``.
 
 Javascript V8
 -------------
@@ -124,16 +123,16 @@ most login errors in case you are not able to login at the backend:
   backend with no credentials the app should make an request to the 
   ``/backend/token`` endpoint which should return a JSON response i.e.: 
 
-  .. code-block:: json
+.. code-block:: json
 
-      { "error": "invalid_request", "error_description": "Credentials not available" }
+    { "error": "invalid_request", "error_description": "Credentials not available" }
 
   If this is the case your app is correctly configured. If this is not the case 
   you need to adjust the endpoint url at ``/public/fusio/index.htm`` i.e.:
 
-  .. code-block:: javascript
+.. code-block:: javascript
 
-      var fusioUrl = "http://localhost:8080/fusio/public/index.php/";
+    var fusioUrl = "http://localhost:8080/fusio/public/index.php/";
 
 * **Apache module mod_rewrite is not activated**
 
@@ -159,8 +158,8 @@ to the backend api and where you configure the system. The backend system
 contains the actual backend code providing the backend API and the API which you 
 create with the system.
 
-Backend system
-^^^^^^^^^^^^^^
+Server
+^^^^^^
 
 Fusio makes heavy use of composer. Because of that you can easily upgrade a 
 Fusio system with the following composer command.
@@ -182,8 +181,8 @@ updated the vendor folder:
 This gives Fusio the chance to adjust the database schema in case something has
 changed with a new release.
 
-Backend app
-^^^^^^^^^^^
+App
+^^^
 
 To update the backend app simply replace the javascript and css files from the 
 new release:

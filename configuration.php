@@ -19,13 +19,6 @@ return array(
     // CHANGE THE KEY ONLY BEFORE THE INSTALLATION
     'fusio_project_key'       => '42eec18ffdbffc9fda6110dcc705d6ce',
 
-    // Optional the engine class which is used to execute an action. The
-    // following engines are available:
-    // * \Fusio\Engine\Factory\Resolver\PhpClass::class
-    // * \Fusio\Impl\Factory\Resolver\PhpFile::class
-    // * \Fusio\Impl\Factory\Resolver\JavascriptFile::class
-    'fusio_engine'            => \Fusio\Impl\Factory\Resolver\PhpFile::class,
-
     // Settings of the internal mailer. By default we use the internal PHP mail
     // function
     /*
@@ -38,6 +31,15 @@ return array(
         'encryption'          => 'tls',
     ],
     */
+
+    // Location of the automatically generated cron file. Note Fusio writes only
+    // to this file if it exists. In order to use the cronjob service you need
+    // to create this file with i.e. "touch /etc/cron.d/fusio"
+    'fusio_cron_file'         => '/etc/cron.d/fusio',
+
+    // Command to execute the Fusio console which is used in the generated cron
+    // file
+    'fusio_cron_exec'         => '/usr/bin/php ' . __DIR__ . '/bin/fusio',
 
     // The url to the psx public folder (i.e. http://127.0.0.1/psx/public or 
     // http://localhost.com)

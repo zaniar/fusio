@@ -1,6 +1,6 @@
 
 <p align="center">
-    <a href="http://www.fusio-project.org/" target="_blank"><img src="http://www.fusio-project.org/img/fusio_64px.png"></a>
+    <a href="https://www.fusio-project.org/" target="_blank"><img src="https://www.fusio-project.org/img/fusio_64px.png"></a>
 </p>
 
 # About
@@ -10,7 +10,7 @@ RESTful APIs. We think that there is a huge potential in the API economy.
 Whether you need an API to expose your business functionality, build micro 
 services, develop SPAs or Mobile-Apps. Because of this we think that Fusio is a 
 great tool to simplify building such APIs. More information on 
-http://www.fusio-project.org/
+https://www.fusio-project.org/
 
 # Features
 
@@ -33,74 +33,53 @@ on building the actual business logic of your API.
   know what is happening with your API. 
 * __Rate limiting__  
   It is possible to limit the requests to a specific threshold.
-* __Specifications__  
+* __Specification__  
   Fusio generates different specification formats for the defined API endpoints
-  i.e. OAI (Swagger), RAML
+  i.e. OAI (Swagger), RAML.
 * __User management__  
   Fusio provides an API where new users can login or register a new account 
-  through GitHub, Google, Facebook or through normal email registration
+  through GitHub, Google, Facebook or through normal email registration.
+* __Logging__  
+  All errors which occur in your endpoint are logged and are visible at the 
+  backend including all information from the request.
+* __Connection__  
+  Fusio provides an [adapter](https://www.fusio-project.org/adapter) system to
+  connect to external services. By default we provide the HTTP and SQL 
+  connection type but there are many other types available i.e. MongoDB, Amqp, 
+  Cassandra.
+* __Migration__  
+  Fusio has a migration system which allows you to change the database schema
+  on deployment.
+* __Testing__  
+  Fusio provides an api test case wherewith you can test every endpoint 
+  response without setting up a local web server.
 
 Basically with Fusio you only have to define the schema (request/response) of 
-your API endpoints and implement the business logic in a simple PHP file. All
-other aspects are covered by Fusio.
+your API endpoints and implement the business logic. All other aspects are 
+covered by Fusio.
 
 # Development
 
-If you develop an API with Fusio you need to define a `.fusio.yml` deploy file
-which specifies the available routes and actions for the system. If a request
-schema is available for a method the input gets validated according to the 
-schema. A deploy file looks like:
+Fusio provides two ways to develop an API. The first way is to build API 
+endpoints only through the backend interface by using all available actions.
+Through this you can solve already many tasks especially through the usage of
+the [v8 action](https://www.fusio-project.org/documentation/v8).
 
-```yaml
-routes:
-  "/todo":
-    version: 1
-    methods:
-      GET:
-        public: true
-        response: Todo-Collection
-        action: "${dir.src}/Todo/collection.php"
-      POST:
-        public: false
-        request: Todo
-        response: Todo-Message
-        action: "${dir.src}/Todo/insert.php"
-  "/todo/:todo_id":
-    version: 1
-    methods:
-      GET:
-        public: true
-        response: Todo
-        action: "${dir.src}/Todo/row.php"
-      DELETE:
-        public: false
-        response: Todo-Message
-        action: "${dir.src}/Todo/delete.php"
-schema:
-  Todo: !include resources/schema/todo/entity.json
-  Todo-Collection: !include resources/schema/todo/collection.json
-  Todo-Message: !include resources/schema/todo/message.json
-connection:
-  Default-Connection:
-    class: Fusio\Adapter\Sql\Connection\SqlAdvanced
-    config:
-      url: "sqlite:///${dir.cache}/todo-app.db"
-migration:
-  Default-Connection:
-    - resources/sql/v1_schema.php
-```
-
-This file can be deploy with the following command:
+The other way is to use the deploy mechanism. Through this you can use normal
+PHP files to implement your business logic and thus you have ability to use the
+complete PHP ecosystem. Therefor you need to define a `.fusio.yml` 
+[deploy file](http://fusio.readthedocs.io/en/latest/deploy.html) which specifies 
+the available routes and actions of the system. This file can be deployed with 
+the following command:
 
 ```
 php bin/fusio deploy
 ```
 
-The action of each route contains the file which handles the business logic. By
-default we use the `PhpFile` engine which uses a simple PHP file but you
-can also set another engine i.e. `PhpClass` or `V8` to use either an actual php 
-class or javascript code. More information in the `src/` folder. In the 
-following an example action to build an API response from a database:
+The action of each route contains the source which handles the business logic. 
+This can be i.e. a simple php file, php class or a url. More information in the 
+`src/` folder. In the following an example action to build an API response 
+from a database:
 
 ```php
 <?php
@@ -123,13 +102,12 @@ return $response->build(200, [], [
     'totalResults' => $count,
     'entry' => $entries,
 ]);
-
 ```
 
 In the code we get the `Default-Connection` which we have defined previously in
 our `.fusio.yml` deploy file. In this case the connection returns a 
 `\Doctrine\DBAL\Connection` instance but we have already 
-[many adapters](http://www.fusio-project.org/adapter) to connect to different 
+[many adapters](https://www.fusio-project.org/adapter) to connect to different 
 services. Then we simply fire some queries and return the response.
 
 # Backend
@@ -158,6 +136,9 @@ paths which are needed by the system.
   to revoke an obtained access token
 * `/export`  
   Endpoints to export the documentation into other formats i.e. swagger
+
+There is also a complete [documentation](http://demo.fusio-project.org/internal/#!/page/about)
+about all internal API endpoints.
 
 # Apps
 
@@ -188,8 +169,8 @@ Swagger. The app is located at `/documentation/`.
 
 # Installation
 
-It is possible to install Fusio either through composer or install it manually.
-Place the project into the www directory of the web server.
+It is possible to install Fusio either through composer or manually file 
+download. Place the project into the www directory of the web server.
 
 ## Composer
 
@@ -219,14 +200,6 @@ https://github.com/apioo/fusio/releases
 You can verify the installation by visiting the `psx_url` with a browser. You
 should see a API response that the installation was successful. The backend is
 available at `/fusio/`.
-
-## Deploy
-
-To deploy the sample API you can run the following command:
-
-```
-php bin/fusio deploy
-```
 
 ## Docker
 
