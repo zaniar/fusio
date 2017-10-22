@@ -41,7 +41,7 @@ return array(
     // file
     'fusio_cron_exec'         => '/usr/bin/php ' . __DIR__ . '/bin/fusio',
 
-    // The url to the psx public folder (i.e. http://127.0.0.1/psx/public or 
+    // The url to the public folder (i.e. http://127.0.0.1/fusio/public or 
     // http://localhost.com)
     'psx_url'                 => 'http://127.0.0.1/projects/fusio/public',
 
@@ -55,11 +55,14 @@ return array(
     // Database parameters which are used for the doctrine DBAL connection
     // http://docs.doctrine-project.org/projects/doctrine-dbal/en/latest/reference/configuration.html
     'psx_connection'          => [
+        /*
         'dbname'              => 'fusio',
         'user'                => 'root',
         'password'            => '',
         'host'                => 'localhost',
         'driver'              => 'pdo_mysql',
+        */
+        'url'                 => 'sqlite:///'.__DIR__.'/data.sqlite',
     ],
 
     // Folder locations
