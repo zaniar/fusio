@@ -1,5 +1,20 @@
 
-### 0.9.9
+### 1.0.0-RC2
+
+* Fix proper handling of null values #84
+* Add header field to action designer #89
+* Backend scope load all assigned routes #90
+* Added apache example conf and update docs
+
+### 1.0.0-RC1 (2017-11-01)
+
+* Add action execute command #64
+* User service add check whether email already exists #80
+* User API proper handling of OPTIONS and HEAD requests #82
+* Fix update correct handling of changed backend routes #85
+* Internal API add config option to send CORS header
+
+### 0.9.9 (2017-10-15)
 
 * Update OAuth2 token endpoint handle OPTIONS request
 * Add query parameters to backend schema
